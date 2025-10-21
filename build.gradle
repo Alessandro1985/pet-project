@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.pet'
+version = '0.0.1-SNAPSHOT'
+description = 'Pet project Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+	implementation 'io.swagger.core.v3:swagger-annotations:2.2.39'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.5.6'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.3'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
